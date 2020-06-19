@@ -21,7 +21,27 @@ class Node:
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
+
+    def __len__(self):
+        return len(self.storage)
+
+    def push(self, value):
+
+        self.storage.insert(0, value)
+
+    def pop(self):
+
+        if len(self.storage) == 0:
+            return None
+
+        value = self.storage.pop(0)
+        return value
+
+
+class LinkedStack:
+    def __init__(self):
+        self.size = 0
         self.head = None
         self.tail = None
 
@@ -36,6 +56,12 @@ class Stack:
             self.head = new_node
             self.tail = new_node
 
+        else:
+            new_node.next_node = self.head
+            self.head = new_node
+
+        self.size += 1
+
     def pop(self):
 
         if not self.head:
@@ -45,8 +71,10 @@ class Stack:
             temp_value = self.head.value
             self.head = None
             self.tail = None
+            self.size = self.size - 1
             return temp_value
 
-        tail_value = self.head.value
+        temp_value = self.head.value
         self.head = self.head.next_node
-        return head_value
+        self.size = self.size - 1
+        return temp_value

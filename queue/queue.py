@@ -52,13 +52,11 @@ class LinkedQueue:
             self.head = None
             self.tail = None
             self.size = self.size - 1
-            print(f"Dequeing: {head_value}")
             return head_value
 
         head_value = self.head.value
         self.head = self.head.next_node
         self.size = self.size - 1
-        print(f"Dequeing: {head_value}")
         return head_value
 
 
@@ -79,5 +77,4 @@ class Queue:
             return None
 
         value = self.storage.pop(0)
-        print(f"Dequeueing: {value}")
         return value
