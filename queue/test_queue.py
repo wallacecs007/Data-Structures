@@ -1,9 +1,12 @@
 import unittest
 from queue import Queue
+from queue import LinkedQueue
+
 
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.q = Queue()
+        # self.q = LinkedQueue()
 
     def test_len_returns_0_for_empty_queue(self):
         self.assertEqual(len(self.q), 0)
@@ -40,8 +43,6 @@ class QueueTests(unittest.TestCase):
         self.assertIsNone(self.q.dequeue())
         self.assertEqual(len(self.q), 0)
 
+
 if __name__ == '__main__':
     unittest.main()
-
-
-        

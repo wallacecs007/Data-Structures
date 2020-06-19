@@ -21,10 +21,9 @@ class Node:
         self.next_node = next_node
 
 
-class Queue:
+class LinkedQueue:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
         self.head = None
         self.tail = None
 
@@ -39,8 +38,10 @@ class Queue:
             self.tail = new_node
 
         else:
-            new_node.next_node = self.head
-            self.head = new_node
+            self.tail.next_node = new_node
+            self.tail = new_node
+
+        self.size += 1
 
     def dequeue(self):
         if not self.head:
@@ -50,8 +51,33 @@ class Queue:
             head_value = self.head.value
             self.head = None
             self.tail = None
+            self.size = self.size - 1
+            print(f"Dequeing: {head_value}")
             return head_value
 
         head_value = self.head.value
         self.head = self.head.next_node
+        self.size = self.size - 1
+        print(f"Dequeing: {head_value}")
         return head_value
+
+
+class Queue:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return len(self.storage)
+
+    def enqueue(self, value):
+
+        self.storage.append(value)
+
+    def dequeue(self):
+        if len(self.storage) == 0:
+            return None
+
+        value = self.storage.pop(0)
+        print(f"Dequeueing: {value}")
+        return value
